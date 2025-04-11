@@ -24,16 +24,11 @@ server.tool(
 );
 
 // ダミーサーバーを起動した状態で使用
-server.tool(
-  "get_test_text",
-  "ダミーサーバーからテスト用の文字列データを取得する",
-  {},
-  async () => {
-    const resp = await fetch("http://localhost:3000/test");
-    const body = await resp.text();
-    return {content: [{type: "text", text: body}]};
-  },
-);
+server.tool("get_test_text", "ダミーサーバーからテスト用の文字列データを取得する", {}, async () => {
+	const resp = await fetch("http://localhost:3000/test");
+	const body = await resp.text();
+	return { content: [{ type: "text", text: body }] };
+});
 
 async function main() {
 	const transport = new StdioServerTransport();
