@@ -3,7 +3,7 @@ import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js"
 import { z } from "zod";
 
 const server = new McpServer({
-	name: "mcp-example",
+	name: "mcp-server-boilerplate",
 	version: "1.0.0",
 });
 
@@ -26,7 +26,7 @@ server.tool(
 async function main() {
 	const transport = new StdioServerTransport();
 	await server.connect(transport);
-	console.error("Example MCP Server running on stdio");
+	console.error("mcp-server-boilerplate MCP Server running on stdio");
 }
 
 main().catch((error) => {

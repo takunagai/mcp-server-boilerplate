@@ -97,7 +97,7 @@
 # プロジェクト構造規約
 
 ```
-mcp-example/
+mcp-server-boilerplate/
 ├── .vscode/                 # VSCode設定
 ├── build/                   # ビルド出力先
 ├── node_modules/            # 依存パッケージ

@@ -1,4 +1,4 @@
-# MCP Example
+# MCP Server Boilerplate
 
 シンプルなModel Context Protocol (MCP) サーバーの実装例です。
 
@@ -32,7 +32,7 @@ MCP (Model Context Protocol) は、AIモデルとアプリケーション間の�
 ```bash
 # リポジトリのクローン
 git clone [リポジトリURL]
-cd mcp-example
+cd mcp-server-boilerplate
 
 # 依存パッケージのインストール
 npm install
@@ -50,10 +50,10 @@ MCPクライアントのMCP設定ファイルに、以下の設定を追加し�
 ```json
 {
   "mcpServers": {
-    "mcp-example": {
+    "mcp-server-boilerplate": {
       "command": "node",
       "args": [
-          "/absolute/path/to/mcp-example/build/index.js"
+          "/absolute/path/to/mcp-server-boilerplate/build/index.js"
       ]
     }
   }
@@ -82,7 +82,7 @@ MCPクライアントのMCP設定ファイルに、以下の設定を追加し�
 ### プロジェクト構造
 
 ```text
-mcp-example/
+mcp-server-boilerplate/
 ├── .vscode/                 # VSCode設定
 ├── build/                   # ビルド出力先
 ├── node_modules/            # 依存パッケージ
@@ -131,7 +131,7 @@ server.tool(
 
 #### Biome
 
-[Biome](https://biomejs.dev/)は、JavaScriptとTypeScriptのための高速なリンター兼フォーマッターです。このプロジェクトでは、コードの品質と一貫性を保つために使用しています。  
+[Biome](https://biomejs.dev)は、JavaScriptとTypeScriptのための高速なリンター兼フォーマッターです。このプロジェクトでは、コードの品質と一貫性を保つために使用しています。  
 `biome.json`ファイルに、プロジェクト固有のルールと設定が定義されています。
 
 以下のnpmスクリプトが利用可能です：
