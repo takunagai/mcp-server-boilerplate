@@ -19,8 +19,8 @@ const server = new McpServer({
 server.tool(
   "double_number",
   "与えられた数値を2倍にする",
-  {num: z.number().describe("数値")},
-  ({num}) => ({content: [{type: "text", text: (num * 2).toString()}]}),
+  { num: z.number().describe("数値") },
+  ({ num }) => ({ content: [{ type: "text", text: (num * 2).toString() }] }),
 );
 
 async function main() {
