@@ -3,8 +3,8 @@ import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js"
 import { z } from "zod";
 
 const server = new McpServer({
-  name: "mcp-example",
-  version: "1.0.0",
+	name: "mcp-example",
+	version: "1.0.0",
 });
 
 /**
@@ -17,19 +17,19 @@ const server = new McpServer({
  * @param handler - ツールの実装
  */
 server.tool(
-  "double_number",
-  "与えられた数値を2倍にする",
-  { num: z.number().describe("数値") },
-  ({ num }) => ({ content: [{ type: "text", text: (num * 2).toString() }] }),
+	"double_number",
+	"与えられた数値を2倍にする",
+	{ num: z.number().describe("数値") },
+	({ num }) => ({ content: [{ type: "text", text: (num * 2).toString() }] }),
 );
 
 async function main() {
-  const transport = new StdioServerTransport();
-  await server.connect(transport);
-  console.error("Example MCP Server running on stdio");
+	const transport = new StdioServerTransport();
+	await server.connect(transport);
+	console.error("Example MCP Server running on stdio");
 }
 
 main().catch((error) => {
-  console.error("Fatal error in main():", error);
-  process.exit(1);
+	console.error("Fatal error in main():", error);
+	process.exit(1);
 });
