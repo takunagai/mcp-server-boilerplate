@@ -48,14 +48,14 @@
 - TypeScript: ^5.8.3
 
 ## 状態管理・ユーティリティ
-- date-fns: ^2.30.0
+- {date-fns: ^2.30.0} (未導入)
 - zod: ^3.24.2
 
 ## 開発ツール
 - biome: ^1.4.1
 
 ### テスト
-- vitest: ^1.0.0
+- {vitest: ^1.0.0} (未導入)
 
 ---
 
@@ -109,6 +109,7 @@ mcp-example/
 ├── {.env.example}           # 環境変数の例
 ├── .gitignore               # Gitの除外設定
 ├── .windsurfrules           # Windsurf設定
+├── biome.json               # Biome設定
 ├── package.json             # 依存関係と設定
 ├── README.md                # READMEファイル
 └── tsconfig.json            # TypeScript設定

@@ -6,6 +6,8 @@
 
 このプロジェクトは、Model Context Protocol (MCP) サーバーの基本的な実装を示すサンプルです。MCPはAIモデルとアプリケーション間の標準化されたインターフェースを提供し、AIモデルの能力を拡張するためのプロトコルです。
 
+[簡易な自作MCPサーバーをお試しで実装する方法 - Zenn](https://zenn.dev/smartround_dev/articles/02af1058e9f80f) の記事を参照しながら実装し、実用的な補足や補助ツールを加えることで、MCPサーバーの構築と拡張方法をより分かりやすく示しています。
+
 このサンプルでは、数値を2倍にする単純なツールを提供しています。MCPサーバーの構築方法と、カスタムツールの実装方法を示すリファレンス実装となっています。
 
 ## MCPの概念
@@ -16,6 +18,14 @@ MCP (Model Context Protocol) は、AIモデルとアプリケーション間の�
 
 - Node.js (v23.11.0以上)
 - npm または yarn
+
+### 対応MCPクライアント
+
+- Claude Code
+- VSCode
+- Windsurf
+- Cursor
+- AWS Bedrock (未確認)
 
 ## インストール方法
 
@@ -33,17 +43,25 @@ npm run build
 
 ## 使用方法
 
-```bash
-# ビルド後に実行
-node build/index.js
+MCPクライアントのMCP設定ファイルに、以下の設定を追加してください。  
+絶対パスで指定してください。
+(※ホームディレクトリに `~` は使用できません。)
+
+```json
+{
+  "mcpServers": {
+    "mcp-example": {
+      "command": "node",
+      "args": [
+          "/absolute/path/to/mcp-example/build/index.js"
+      ]
+    }
+  }
+}
 ```
 
-または、パッケージをグローバルにインストールして使用：
-
-```bash
-npm install -g .
-mcp-example
-```
+設定の変更を適用するために、MCPクライアントを再起動してください。
+エージェントモードで `double_numberを使って3を2倍した結果を表示して` と指示し、ツールが正しく動作するか確認してください。(ツール名の指定は必須ではないが、確実にツールを使用させるために指定しています。)
 
 ## 提供するツール
 
@@ -76,15 +94,11 @@ mcp-example/
 ├── {.env.example}           # 環境変数の例
 ├── .gitignore               # Gitの除外設定
 ├── .windsurfrules           # Windsurf設定
+├── biome.json               # Biome設定
 ├── package.json             # 依存関係と設定
 ├── README.md                # READMEファイル
 └── tsconfig.json            # TypeScript設定
 ```
-
-### 使用している主な依存パッケージ
-
-- `@modelcontextprotocol/sdk`: ^1.9.0 - MCPサーバーの実装に必要なSDK
-- `zod`: ^3.24.2 - 型検証とスキーマ定義のためのライブラリ
 
 ### 新しいツールの追加方法
 
@@ -108,15 +122,33 @@ server.tool(
 );
 ```
 
-### MCP対応クライアント
+### 主な依存パッケージ
 
-このMCPサーバーは以下のクライアントと互換性があります：
+- `@modelcontextprotocol/sdk`: ^1.9.0 - MCPサーバーの実装に必要なSDK
+- `zod`: ^3.24.2 - 型検証とスキーマ定義のためのライブラリ
 
-- Claude Code
-- VSCode
-- Windsurf
-- Cursor
-- AWS Bedrock (未確認)
+### 開発ツール
+
+#### Biome
+
+[Biome](https://biomejs.dev/)は、JavaScriptとTypeScriptのための高速なリンター兼フォーマッターです。このプロジェクトでは、コードの品質と一貫性を保つために使用しています。  
+`biome.json`ファイルに、プロジェクト固有のルールと設定が定義されています。
+
+以下のnpmスクリプトが利用可能です：
+
+```bash
+# コードをチェック
+npm run lint
+
+# コードをチェックして問題を自動修正
+npm run lint:fix
+
+# フォーマットをチェック
+npm run format
+
+# フォーマットを自動修正
+npm run format:fix
+```
 
 ## ライセンス
 
