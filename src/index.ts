@@ -25,9 +25,17 @@ server.tool(
 
 // ダミーサーバーを起動した状態で使用
 server.tool("get_test_text", "ダミーサーバーからテスト用の文字列データを取得する", {}, async () => {
+	const foo = process.env.FOO ?? ""; // 環境変数FOOの値を取得
 	const resp = await fetch("http://localhost:3000/test");
 	const body = await resp.text();
-	return { content: [{ type: "text", text: body }] };
+	return {
+		content: [
+			{
+				type: "text",
+				text: `環境変数FOOの値: ${foo}\nテスト用の文字列データ: ${body}`,
+			},
+		],
+	};
 });
 
 async function main() {
